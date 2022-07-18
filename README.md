@@ -49,7 +49,8 @@ Menggunakan sebuah sensor ***selain sensor ultrasonic HC-SR04***, buatlah hal-ha
             if lembab is not None and suhu is not None:
                 print("Suhu={0:0.1f}*C  Kelembaban={1:0.1f}%".format(suhu, lembab))
 
-                # menambah logic untuk print suatu keadaan suhu jika: suhu kurang dari || lebih dari sekian temperatur
+                # menambah logic untuk print suatu keadaan suhu 
+                # jika: suhu kurang dari || lebih dari sekian temperatur
                 if suhu <= 34 and suhu >= 15:
                     print("Suhu normal")
                 elif suhu >= 34 and suhu <= 45:
