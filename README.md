@@ -39,32 +39,31 @@ Menggunakan sebuah sensor ***selain sensor ultrasonic HC-SR04***, buatlah hal-ha
     import time
     import RPi.GPIO as GPIO  
     
-    DHT_SENSOR = Adafruit_DHT.DHT11
-    DHT_PIN = 4
+   SENSOR = Adafruit_DHT.DHT11
+   PIN = 4
     
     try:
         while True:
-            humidity, temperature = Adafruit_DHT.read(DHT_SENSOR, DHT_PIN)
+            lembab, suhu = Adafruit_DHT.read(SENSOR, PIN)
 
-            if humidity is not None and temperature is not None:
-                print("Temp={0:0.1f}*C  Humidity={1:0.1f}%".format(temperature, humidity))
+            if lembab is not None and suhu is not None:
+                print("Suhu={0:0.1f}*C  Kelembaban={1:0.1f}%".format(suhu, lembab))
 
                 # menambah logic untuk print suatu keadaan suhu jika: suhu kurang dari || lebih dari sekian temperatur
-                if temperature <= 34 and temperature >= 15:
+                if suhu <= 34 and suhu >= 15:
                     print("Suhu normal")
-                elif temperature >= 34 and temperature <= 45:
+                elif suhu >= 34 and suhu <= 45:
                     print("Suhu panas")
-                elif temperature <= 15 and temperature >= -15 :
+                elif suhu <= 15 and suhu >= -15 :
                     print("Suhu dingin")
                 else:
                     print("Suhu tidak normal, membahayakan")
 
-        else:
-            print("Tidak bisa membaca data dari sensor")
-        time.sleep(1)
+            else:
+                print("Tidak bisa membaca data dari sensor")
+            time.sleep(1)
         
-        GPIO.cleanup()
-    
+        
     # Menghentikan program dengan CTRL + C
     except KeyboardInterrupt:
         print("Sensor dihentikan")
